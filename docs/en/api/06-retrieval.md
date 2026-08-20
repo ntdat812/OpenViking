@@ -190,8 +190,8 @@ results = client.find(query="how to authenticate users")
 # Search with filter and time range
 recent_emails = client.find(
     query="invoice",
+    target_uri="viking://resources/email",
     options={
-        "target_uri": "viking://resources/email",
         "since": "7d",
         "time_field": "created_at",
     },
@@ -227,19 +227,19 @@ for ctx in results.resources:
 # Search only in resources
 results = client.find(
     query="authentication",
-    options={"target_uri": "viking://resources"},
+    target_uri="viking://resources",
 )
 
 # Search only in user memories
 results = client.find(
     query="preferences",
-    options={"target_uri": "viking://user/memories"},
+    target_uri="viking://user/memories",
 )
 
 # Search only in current-user resources
 results = client.find(
     query="private docs",
-    options={"target_uri": "viking://user/resources"},
+    target_uri="viking://user/resources",
 )
 
 # Search with the peer collection filtered to one peer
@@ -253,13 +253,13 @@ peer_results = peer_client.find(query="invoice follow-up")
 # Search only in skills
 results = client.find(
     query="web search",
-    options={"target_uri": "viking://user/skills"},
+    target_uri="viking://user/skills",
 )
 
 # Search in specific project
 results = client.find(
     query="API endpoints",
-    options={"target_uri": "viking://resources/my-project"},
+    target_uri="viking://resources/my-project",
 )
 ```
 
@@ -480,8 +480,8 @@ session.add_message(
 # Search understands conversation context
 results = client.search(
     query="best practices",
+    session_id=session.session_id,
     options={
-        "session_id": session.session_id,
         "context_type": ContextType.SKILL,
         "since": "2h",
     },
@@ -1124,7 +1124,7 @@ client.initialize()
 # Search in relevant scope for better results
 results = client.find(
     query="error handling",
-    options={"target_uri": "viking://resources/my-project"},
+    target_uri="viking://resources/my-project",
 )
 ```
 
@@ -1150,7 +1150,7 @@ session.add_message(
 # Search understands context
 results = client.search(
     query="best practices",
-    options={"session_id": session.session_id},
+    session_id=session.session_id,
 )
 ```
 

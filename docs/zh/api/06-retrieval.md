@@ -191,8 +191,8 @@ results = client.find(query="how to authenticate users")
 # 带过滤和时间范围的搜索
 recent_emails = client.find(
     query="invoice",
+    target_uri="viking://resources/email",
     options={
-        "target_uri": "viking://resources/email",
         "since": "7d",
         "time_field": "created_at",
     },
@@ -228,19 +228,19 @@ for ctx in results.resources:
 # 仅在资源中搜索
 results = client.find(
     query="authentication",
-    options={"target_uri": "viking://resources"},
+    target_uri="viking://resources",
 )
 
 # 仅在用户记忆中搜索
 results = client.find(
     query="preferences",
-    options={"target_uri": "viking://user/memories"},
+    target_uri="viking://user/memories",
 )
 
 # 仅在当前用户资源中搜索
 results = client.find(
     query="private docs",
-    options={"target_uri": "viking://user/resources"},
+    target_uri="viking://user/resources",
 )
 
 # 检索时把 peer 集合过滤到一个 peer
@@ -254,13 +254,13 @@ peer_results = peer_client.find(query="invoice follow-up")
 # 仅在技能中搜索
 results = client.find(
     query="web search",
-    options={"target_uri": "viking://user/skills"},
+    target_uri="viking://user/skills",
 )
 
 # 在特定项目中搜索
 results = client.find(
     query="API endpoints",
-    options={"target_uri": "viking://resources/my-project"},
+    target_uri="viking://resources/my-project",
 )
 ```
 
@@ -482,8 +482,8 @@ session.add_message(
 # 搜索能够理解对话上下文
 results = client.search(
     query="best practices",
+    session_id=session.session_id,
     options={
-        "session_id": session.session_id,
         "context_type": ContextType.SKILL,
         "since": "2h",
     },
@@ -1125,7 +1125,7 @@ client.initialize()
 # 在相关范围内搜索以获得更好的结果
 results = client.find(
     query="error handling",
-    options={"target_uri": "viking://resources/my-project"},
+    target_uri="viking://resources/my-project",
 )
 ```
 
@@ -1151,7 +1151,7 @@ session.add_message(
 # 搜索能够理解上下文
 results = client.search(
     query="best practices",
-    options={"session_id": session.session_id},
+    session_id=session.session_id,
 )
 ```
 
